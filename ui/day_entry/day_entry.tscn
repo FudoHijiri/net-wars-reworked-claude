@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ui/day_entry/day_entry.gd" id="1_de"]
+
+[node name="DayEntry" type="Button"]
+custom_minimum_size = Vector2(280, 40)
+script = ExtResource("1_de")

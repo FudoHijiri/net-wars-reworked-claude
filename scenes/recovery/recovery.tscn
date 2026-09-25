@@ -1,0 +1,147 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/recovery/recovery.gd" id="1_rec"]
+
+[node name="Recovery" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_rec")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.043, 0.055, 0.086, 1)
+
+[node name="HintBanner" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+offset_bottom = 48.0
+
+[node name="HintLabel" type="Label" parent="HintBanner"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Hint"
+
+[node name="NetworkView" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Margin" type="MarginContainer" parent="NetworkView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Rows" type="VBoxContainer" parent="NetworkView/Margin"]
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="NetworkView/Margin/Rows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 26
+text = "NETWORK STATUS"
+
+[node name="ComponentList" type="VBoxContainer" parent="NetworkView/Margin/Rows"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="ProgressLabel" type="Label" parent="NetworkView/Margin/Rows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+text = "Repaired: 0 / 0 damaged components"
+
+[node name="MinigamePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="Margin" type="MarginContainer" parent="MinigamePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="Rows" type="VBoxContainer" parent="MinigamePanel/Margin"]
+theme_override_constants/separation = 14
+
+[node name="MinigameTitleLabel" type="Label" parent="MinigamePanel/Margin/Rows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "REPAIRING: COMPONENT"
+
+[node name="InstructionLabel" type="Label" parent="MinigamePanel/Margin/Rows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+autowrap_mode = 3
+text = ""
+
+[node name="MinigameContent" type="VBoxContainer" parent="MinigamePanel/Margin/Rows"]
+unique_name_in_owner = true
+theme_override_constants/separation = 12
+
+[node name="OptionsRow" type="HBoxContainer" parent="MinigamePanel/Margin/Rows"]
+unique_name_in_owner = true
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="FeedbackLabel" type="Label" parent="MinigamePanel/Margin/Rows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+autowrap_mode = 3
+text = ""
+
+[node name="ButtonRow" type="HBoxContainer" parent="MinigamePanel/Margin/Rows"]
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="RetryButton" type="Button" parent="MinigamePanel/Margin/Rows/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 44)
+visible = false
+text = "Retry"
+
+[node name="CloseMinigameButton" type="Button" parent="MinigamePanel/Margin/Rows/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+text = "Back to Network"
+
+[node name="CompletePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="CompletePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CompleteRows" type="VBoxContainer" parent="CompletePanel/CenterContainer"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+text = "SYSTEMS RESTORED"
+
+[node name="SummaryLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+autowrap_mode = 3
+custom_minimum_size = Vector2(480, 0)
+text = ""
+
+[node name="ContinueButton" type="Button" parent="CompletePanel/CenterContainer/CompleteRows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+size_flags_horizontal = 4
+text = "Continue"

@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ui/dialogue_box/dialogue_box.gd" id="1_script"]
+
+[node name="DialogueBox" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_script")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.043, 0.055, 0.086, 1)
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="PortraitRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.35
+anchor_top = 0.08
+anchor_right = 0.65
+anchor_bottom = 0.82
+
+[node name="Panel" type="Panel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -220.0
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 14
+
+[node name="Rows" type="VBoxContainer" parent="Panel/Margin"]
+
+[node name="SpeakerLabel" type="Label" parent="Panel/Margin/Rows"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = "Speaker"
+
+[node name="DialogueLabel" type="Label" parent="Panel/Margin/Rows"]
+unique_name_in_owner = true
+size_flags_vertical = 3
+autowrap_mode = 3
+text = "Dialogue text goes here."
+
+[node name="ButtonRow" type="HBoxContainer" parent="Panel/Margin/Rows"]
+alignment = 2
+theme_override_constants/separation = 8
+
+[node name="SkipButton" type="Button" parent="Panel/Margin/Rows/ButtonRow"]
+unique_name_in_owner = true
+text = "Skip"
+
+[node name="ContinueButton" type="Button" parent="Panel/Margin/Rows/ButtonRow"]
+unique_name_in_owner = true
+text = "Continue"

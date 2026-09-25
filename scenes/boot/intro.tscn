@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/boot/intro.gd" id="1_intro"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_box/dialogue_box.tscn" id="2_dbox"]
+
+[node name="Intro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_intro")
+
+[node name="DialogueBox" parent="." instance=ExtResource("2_dbox")]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0

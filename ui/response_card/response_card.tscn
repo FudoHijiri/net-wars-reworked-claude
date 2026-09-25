@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ui/response_card/response_card.gd" id="1_card"]
+
+[node name="ResponseCard" type="Control"]
+custom_minimum_size = Vector2(90, 120)
+offset_right = 90.0
+offset_bottom = 120.0
+script = ExtResource("1_card")
+
+[node name="Bg" type="ColorRect" parent="."]
+offset_right = 90.0
+offset_bottom = 120.0
+mouse_filter = 2
+color = Color(0.16, 0.18, 0.24, 1)
+
+[node name="TypeTint" type="ColorRect" parent="."]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 84.0
+offset_bottom = 66.0
+mouse_filter = 2
+color = Color(0.5, 0.5, 0.5, 0.3)
+
+[node name="EnergyCost" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 26.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="."]
+offset_left = 6.0
+offset_top = 66.0
+offset_right = 84.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.55, 0.45, 0.3, 0.5)
+
+[node name="CardName" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 82.0
+offset_right = 84.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="CardCategory" type="Label" parent="."]
+clip_contents = true
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 84.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+autowrap_mode = 2

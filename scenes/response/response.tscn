@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/response/response.gd" id="1_resp"]
+
+[node name="Response" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_resp")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.043, 0.055, 0.086, 1)
+
+[node name="HintBanner" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+offset_bottom = 48.0
+
+[node name="HintLabel" type="Label" parent="HintBanner"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Hint"
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="MainRows" type="VBoxContainer" parent="MainMargin"]
+theme_override_constants/separation = 14
+
+[node name="TopBar" type="HBoxContainer" parent="MainMargin/MainRows"]
+theme_override_constants/separation = 32
+
+[node name="IntegrityLabel" type="Label" parent="MainMargin/MainRows/TopBar"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 18
+text = "System Integrity: 100 / 100"
+
+[node name="BossHpLabel" type="Label" parent="MainMargin/MainRows/TopBar"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 18
+text = "Threat HP: 100 / 100"
+
+[node name="EnergyLabel" type="Label" parent="MainMargin/MainRows/TopBar"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 18
+text = "Energy: 3 / 3"
+
+[node name="BossPanel" type="VBoxContainer" parent="MainMargin/MainRows"]
+theme_override_constants/separation = 4
+
+[node name="BossNameLabel" type="Label" parent="MainMargin/MainRows/BossPanel"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 26
+text = "THREAT"
+
+[node name="IntentLabel" type="Label" parent="MainMargin/MainRows/BossPanel"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+text = "Intent: -- "
+
+[node name="Spacer" type="Control" parent="MainMargin/MainRows"]
+size_flags_vertical = 3
+
+[node name="HandContainer" type="HBoxContainer" parent="MainMargin/MainRows"]
+unique_name_in_owner = true
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="BottomBar" type="HBoxContainer" parent="MainMargin/MainRows"]
+alignment = 1
+theme_override_constants/separation = 24
+
+[node name="DeckCountLabel" type="Label" parent="MainMargin/MainRows/BottomBar"]
+unique_name_in_owner = true
+text = "Deck: 0"
+
+[node name="DiscardCountLabel" type="Label" parent="MainMargin/MainRows/BottomBar"]
+unique_name_in_owner = true
+text = "Discard: 0"
+
+[node name="EndTurnButton" type="Button" parent="MainMargin/MainRows/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+text = "End Turn"
+
+[node name="ResultPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="ResultPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ResultRows" type="VBoxContainer" parent="ResultPanel/CenterContainer"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ResultLabel" type="Label" parent="ResultPanel/CenterContainer/ResultRows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+text = "RESULT"
+
+[node name="SummaryLabel" type="Label" parent="ResultPanel/CenterContainer/ResultRows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+autowrap_mode = 3
+custom_minimum_size = Vector2(480, 0)
+text = ""
+
+[node name="ContinueButton" type="Button" parent="ResultPanel/CenterContainer/ResultRows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+size_flags_horizontal = 4
+text = "Continue"

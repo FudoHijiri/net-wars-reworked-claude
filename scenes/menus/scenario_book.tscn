@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/menus/scenario_book.gd" id="1_book"]
+
+[node name="ScenarioBook" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_book")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.043, 0.055, 0.086, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BookPanel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(420, 480)
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/BookPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="Rows" type="VBoxContainer" parent="CenterContainer/BookPanel/Margin"]
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/BookPanel/Margin/Rows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 26
+text = "SCENARIO BOOK"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/BookPanel/Margin/Rows"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 320)
+
+[node name="DayList" type="VBoxContainer" parent="CenterContainer/BookPanel/Margin/Rows/ScrollContainer"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="CenterContainer/BookPanel/Margin/Rows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+size_flags_horizontal = 4
+text = "Back"

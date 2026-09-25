@@ -1,0 +1,161 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/monitoring/monitoring.gd" id="1_mon"]
+
+[node name="Monitoring" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_mon")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.043, 0.055, 0.086, 1)
+
+[node name="HintBanner" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+offset_bottom = 48.0
+
+[node name="HintLabel" type="Label" parent="HintBanner"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Hint"
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="MainRows" type="VBoxContainer" parent="MainMargin"]
+theme_override_constants/separation = 16
+
+[node name="TopBar" type="HBoxContainer" parent="MainMargin/MainRows"]
+theme_override_constants/separation = 40
+
+[node name="TimeLabel" type="Label" parent="MainMargin/MainRows/TopBar"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = "Time Remaining: 0:45"
+
+[node name="SecurityPointsLabel" type="Label" parent="MainMargin/MainRows/TopBar"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = "Security Points: 0"
+
+[node name="ViewTabs" type="HBoxContainer" parent="MainMargin/MainRows"]
+theme_override_constants/separation = 12
+
+[node name="ComputerViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 44)
+text = "Computer View"
+
+[node name="LoginViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 44)
+text = "Login View"
+
+[node name="NetworkViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 44)
+text = "Network View"
+
+[node name="ServerViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 44)
+text = "Server View"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainMargin/MainRows"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 220)
+
+[node name="EventList" type="VBoxContainer" parent="MainMargin/MainRows/ScrollContainer"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="DetailPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="DetailMargin" type="MarginContainer" parent="DetailPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="DetailRows" type="VBoxContainer" parent="DetailPanel/DetailMargin"]
+theme_override_constants/separation = 12
+
+[node name="DetailTitleLabel" type="Label" parent="DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "EVENT DETAILS"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DetailPanel/DetailMargin/DetailRows"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 140)
+
+[node name="DetailFieldsList" type="VBoxContainer" parent="DetailPanel/DetailMargin/DetailRows/ScrollContainer"]
+unique_name_in_owner = true
+theme_override_constants/separation = 6
+
+[node name="ReportFeedbackLabel" type="Label" parent="DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+autowrap_mode = 3
+text = ""
+
+[node name="ButtonRow" type="HBoxContainer" parent="DetailPanel/DetailMargin/DetailRows"]
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="ReportButton" type="Button" parent="DetailPanel/DetailMargin/DetailRows/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+text = "Report Anomaly"
+
+[node name="CloseDetailButton" type="Button" parent="DetailPanel/DetailMargin/DetailRows/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 44)
+text = "Close"
+
+[node name="CompletePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="CompletePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CompleteRows" type="VBoxContainer" parent="CompletePanel/CenterContainer"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+text = "MONITORING COMPLETE"
+
+[node name="SummaryLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+text = "Correct Reports: 0\nFalse Reports: 0\nSecurity Points: 0"
+
+[node name="ContinueButton" type="Button" parent="CompletePanel/CenterContainer/CompleteRows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+size_flags_horizontal = 4
+text = "Continue"

@@ -1,0 +1,260 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/investigation/investigation.gd" id="1_inv"]
+
+[node name="Investigation" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_inv")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.043, 0.055, 0.086, 1)
+
+[node name="HintBanner" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+offset_bottom = 48.0
+
+[node name="HintLabel" type="Label" parent="HintBanner"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Hint"
+
+[node name="DesktopView" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Margin" type="MarginContainer" parent="DesktopView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Rows" type="VBoxContainer" parent="DesktopView/Margin"]
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="DesktopView/Margin/Rows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "SECURITY DESKTOP"
+
+[node name="GridCenter" type="CenterContainer" parent="DesktopView/Margin/Rows"]
+size_flags_vertical = 3
+
+[node name="AppGrid" type="GridContainer" parent="DesktopView/Margin/Rows/GridCenter"]
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 4
+
+[node name="EmailButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Email"
+
+[node name="LogsButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Logs"
+
+[node name="ComputersButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Computers"
+
+[node name="LoginActivityButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Login Activity"
+
+[node name="FilesButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Files"
+
+[node name="NetworkButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Network"
+
+[node name="ServersButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Servers"
+
+[node name="ReportsButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+text = "Reports"
+
+[node name="BottomBar" type="HBoxContainer" parent="DesktopView/Margin/Rows"]
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="EvidenceLogButton" type="Button" parent="DesktopView/Margin/Rows/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+text = "Evidence Log (0)"
+
+[node name="ConfirmThreatButton" type="Button" parent="DesktopView/Margin/Rows/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 44)
+text = "Confirm Threat"
+
+[node name="AppView" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="Margin" type="MarginContainer" parent="AppView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Rows" type="VBoxContainer" parent="AppView/Margin"]
+theme_override_constants/separation = 12
+
+[node name="AppTitleLabel" type="Label" parent="AppView/Margin/Rows"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "Application"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AppView/Margin/Rows"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 180)
+
+[node name="EntryList" type="VBoxContainer" parent="AppView/Margin/Rows/ScrollContainer"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="DetailPanel" type="Panel" parent="AppView/Margin/Rows"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 140)
+
+[node name="DetailMargin" type="MarginContainer" parent="AppView/Margin/Rows/DetailPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="DetailRows" type="VBoxContainer" parent="AppView/Margin/Rows/DetailPanel/DetailMargin"]
+theme_override_constants/separation = 8
+
+[node name="DetailLabel" type="Label" parent="AppView/Margin/Rows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+autowrap_mode = 3
+text = "Detail text goes here."
+
+[node name="MarkFeedbackLabel" type="Label" parent="AppView/Margin/Rows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+autowrap_mode = 3
+text = ""
+
+[node name="MarkEvidenceButton" type="Button" parent="AppView/Margin/Rows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 40)
+text = "Mark as Evidence"
+
+[node name="CloseAppButton" type="Button" parent="AppView/Margin/Rows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+text = "Close"
+
+[node name="EvidenceView" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="Margin" type="MarginContainer" parent="EvidenceView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Rows" type="VBoxContainer" parent="EvidenceView/Margin"]
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="EvidenceView/Margin/Rows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "EVIDENCE LOG"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="EvidenceView/Margin/Rows"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 220)
+
+[node name="EvidenceList" type="VBoxContainer" parent="EvidenceView/Margin/Rows/ScrollContainer"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="CloseEvidenceButton" type="Button" parent="EvidenceView/Margin/Rows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+text = "Close"
+
+[node name="ThreatView" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="Margin" type="MarginContainer" parent="ThreatView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Rows" type="VBoxContainer" parent="ThreatView/Margin"]
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="ThreatView/Margin/Rows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "CONFIRM SUSPECTED THREAT"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ThreatView/Margin/Rows"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 180)
+
+[node name="ThreatList" type="VBoxContainer" parent="ThreatView/Margin/Rows/ScrollContainer"]
+unique_name_in_owner = true
+theme_override_constants/separation = 6
+
+[node name="FeedbackLabel" type="Label" parent="ThreatView/Margin/Rows"]
+unique_name_in_owner = true
+autowrap_mode = 3
+text = ""
+
+[node name="ButtonRow" type="HBoxContainer" parent="ThreatView/Margin/Rows"]
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="ConfirmButton" type="Button" parent="ThreatView/Margin/Rows/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 44)
+text = "Confirm"
+
+[node name="CloseThreatButton" type="Button" parent="ThreatView/Margin/Rows/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 44)
+text = "Close"

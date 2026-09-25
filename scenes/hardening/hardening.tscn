@@ -1,0 +1,152 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/hardening/hardening.gd" id="1_hard"]
+
+[node name="Hardening" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_hard")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.043, 0.055, 0.086, 1)
+
+[node name="HintBanner" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+offset_bottom = 48.0
+
+[node name="HintLabel" type="Label" parent="HintBanner"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Hint"
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="MainRows" type="VBoxContainer" parent="MainMargin"]
+theme_override_constants/separation = 14
+
+[node name="SecurityPointsLabel" type="Label" parent="MainMargin/MainRows"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = "Security Points: 0"
+
+[node name="ShopScroll" type="ScrollContainer" parent="MainMargin/MainRows"]
+custom_minimum_size = Vector2(0, 160)
+
+[node name="ShopList" type="VBoxContainer" parent="MainMargin/MainRows/ShopScroll"]
+unique_name_in_owner = true
+theme_override_constants/separation = 8
+
+[node name="DetailPanel" type="Panel" parent="MainMargin/MainRows"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 150)
+
+[node name="DetailMargin" type="MarginContainer" parent="MainMargin/MainRows/DetailPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="DetailRows" type="VBoxContainer" parent="MainMargin/MainRows/DetailPanel/DetailMargin"]
+theme_override_constants/separation = 6
+
+[node name="DetailNameLabel" type="Label" parent="MainMargin/MainRows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = "Select a defense to inspect it."
+
+[node name="DetailDescriptionLabel" type="Label" parent="MainMargin/MainRows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+autowrap_mode = 3
+text = ""
+
+[node name="DetailCostLabel" type="Label" parent="MainMargin/MainRows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+text = ""
+
+[node name="DetailFeedbackLabel" type="Label" parent="MainMargin/MainRows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+autowrap_mode = 3
+text = ""
+
+[node name="BuyButton" type="Button" parent="MainMargin/MainRows/DetailPanel/DetailMargin/DetailRows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 40)
+text = "Purchase"
+
+[node name="BottomBar" type="HBoxContainer" parent="MainMargin/MainRows"]
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="ViewDeckButton" type="Button" parent="MainMargin/MainRows/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 44)
+text = "View Response Deck"
+
+[node name="ConfirmButton" type="Button" parent="MainMargin/MainRows/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 44)
+text = "Confirm Preparation"
+
+[node name="ResponseDeckPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="Margin" type="MarginContainer" parent="ResponseDeckPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="ResponseDeckPanel/Margin"]
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="ResponseDeckPanel/Margin/Rows"]
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+text = "RESPONSE LOADOUT"
+
+[node name="DeckSectionLabel" type="Label" parent="ResponseDeckPanel/Margin/Rows"]
+theme_override_font_sizes/font_size = 16
+text = "Deck:"
+
+[node name="DeckScroll" type="ScrollContainer" parent="ResponseDeckPanel/Margin/Rows"]
+custom_minimum_size = Vector2(0, 120)
+
+[node name="DeckList" type="VBoxContainer" parent="ResponseDeckPanel/Margin/Rows/DeckScroll"]
+unique_name_in_owner = true
+theme_override_constants/separation = 4
+
+[node name="PassivesSectionLabel" type="Label" parent="ResponseDeckPanel/Margin/Rows"]
+theme_override_font_sizes/font_size = 16
+text = "Passive Upgrades:"
+
+[node name="PassivesScroll" type="ScrollContainer" parent="ResponseDeckPanel/Margin/Rows"]
+custom_minimum_size = Vector2(0, 80)
+
+[node name="PassivesList" type="VBoxContainer" parent="ResponseDeckPanel/Margin/Rows/PassivesScroll"]
+unique_name_in_owner = true
+theme_override_constants/separation = 4
+
+[node name="CloseDeckButton" type="Button" parent="ResponseDeckPanel/Margin/Rows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+size_flags_horizontal = 4
+text = "Close"

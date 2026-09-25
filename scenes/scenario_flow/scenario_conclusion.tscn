@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/scenario_flow/scenario_conclusion.gd" id="1_sc"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_box/dialogue_box.tscn" id="2_dbox"]
+
+[node name="ScenarioConclusion" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_sc")
+
+[node name="DialogueBox" parent="." instance=ExtResource("2_dbox")]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
