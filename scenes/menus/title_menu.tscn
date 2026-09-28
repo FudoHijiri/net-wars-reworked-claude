@@ -20,15 +20,17 @@ color = Color(0.02, 0.023, 0.032, 1)
 [node name="MonitorFrame" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = 44.0
-offset_right = -140.0
-offset_bottom = -44.0
+offset_left = 190.0
+offset_top = 76.0
+offset_right = -190.0
+offset_bottom = -76.0
 
 [node name="TVImage" type="TextureRect" parent="MonitorFrame"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource("2_tv")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ScreenContent" type="Control" parent="MonitorFrame"]
 anchor_left = 0.12
@@ -41,50 +43,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MonitorFrame/ScreenContent/CenterContainer"]
-theme_override_constants/separation = 18
+theme_override_constants/separation = 22
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+theme_type_variation = &"MainTitle"
 horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
-theme_override_font_sizes/font_size = 48
 text = "NET WARS"
 
 [node name="SubtitleLabel" type="Label" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+theme_type_variation = &"SmallInfo"
 horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.5, 0.63, 0.75, 1)
-theme_override_font_sizes/font_size = 14
 text = "SECURITY ANALYST TERMINAL"
 
 [node name="ButtonSpacer" type="Control" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 8)
+custom_minimum_size = Vector2(0, 14)
 
-[node name="PlayButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+[node name="ButtonColumn" type="VBoxContainer" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer/ButtonColumn"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(320, 58)
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 18
 text = "> PLAY"
 
-[node name="SettingsButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer/ButtonColumn"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(320, 58)
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 18
 text = "> SETTINGS"
 
-[node name="CreditsButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer/ButtonColumn"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(320, 58)
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 18
 text = "> CREDITS"
 
-[node name="ExitButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer/ButtonColumn"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(320, 58)
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 18
 text = "> EXIT"
 
 [node name="ScanlineOverlay" type="ColorRect" parent="MonitorFrame/ScreenContent"]

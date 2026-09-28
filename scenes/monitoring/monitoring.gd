@@ -126,6 +126,9 @@ func _populate_event_list() -> void:
 		var button := Button.new()
 		var prefix: String = "[Reported] " if _reported_ids.has(event.get("id", "")) else ""
 		button.text = prefix + String(event.get("summary", ""))
+		button.custom_minimum_size = Vector2(0, 44)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.pressed.connect(_on_event_selected.bind(event))
 		_event_list.add_child(button)
 

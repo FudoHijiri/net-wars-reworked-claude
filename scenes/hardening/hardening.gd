@@ -75,6 +75,9 @@ func _populate_shop_list() -> void:
 		var owned: bool = _owned_ids.has(String(item.get("id", "")))
 		var prefix: String = "(Owned) " if owned else ""
 		button.text = "%s%s -- %d Security Points" % [prefix, item.get("name", ""), int(item.get("cost", 0))]
+		button.custom_minimum_size = Vector2(0, 52)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.pressed.connect(_on_item_selected.bind(item))
 		_shop_list.add_child(button)
 

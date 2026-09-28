@@ -21,59 +21,57 @@ visible = false
 [node name="PortraitRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
 anchor_left = 0.35
-anchor_top = 0.08
+anchor_top = 0.07
 anchor_right = 0.65
-anchor_bottom = 0.82
+anchor_bottom = 0.72
 
 [node name="Panel" type="Panel" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -196.0
+offset_top = -230.0
 
 [node name="Margin" type="MarginContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
 
 [node name="Rows" type="VBoxContainer" parent="Panel/Margin"]
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="SpeakerBar" type="Panel" parent="Panel/Margin/Rows"]
 theme_type_variation = &"TitleBar"
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 40)
 
 [node name="SpeakerLabel" type="Label" parent="Panel/Margin/Rows/SpeakerBar"]
 unique_name_in_owner = true
+theme_type_variation = &"TitleBarLabel"
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
+offset_left = 12.0
 vertical_alignment = 1
-theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
-theme_override_font_sizes/font_size = 16
 text = "Speaker"
-
-[node name="DialogueSpacer" type="Control" parent="Panel/Margin/Rows"]
-custom_minimum_size = Vector2(0, 6)
 
 [node name="DialogueLabel" type="Label" parent="Panel/Margin/Rows"]
 unique_name_in_owner = true
 size_flags_vertical = 3
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 22
 text = "Dialogue text goes here."
 
 [node name="ButtonRow" type="HBoxContainer" parent="Panel/Margin/Rows"]
 alignment = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 16
 
 [node name="SkipButton" type="Button" parent="Panel/Margin/Rows/ButtonRow"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
 text = ">> SKIP"
 
 [node name="ContinueButton" type="Button" parent="Panel/Margin/Rows/ButtonRow"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 48)
 text = "CONTINUE >"

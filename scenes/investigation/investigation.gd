@@ -118,6 +118,8 @@ func _populate_entry_list(app_key: String) -> void:
 	for entry in entries:
 		var button := Button.new()
 		button.text = String(entry.get("title", ""))
+		button.custom_minimum_size = Vector2(0, 44)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.pressed.connect(_on_entry_selected.bind(entry))
 		_entry_list.add_child(button)
 
@@ -209,6 +211,8 @@ func _populate_threat_list() -> void:
 		var button := Button.new()
 		button.text = threat_name
 		button.toggle_mode = true
+		button.custom_minimum_size = Vector2(0, 40)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.pressed.connect(_on_threat_option_pressed.bind(threat_name))
 		_threat_list.add_child(button)
 

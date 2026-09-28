@@ -21,16 +21,15 @@ GameState="*res://autoload/game_state.gd"
 ScenarioDatabase="*res://autoload/scenario_database.gd"
 ScenarioFlow="*res://autoload/scenario_flow.gd"
 
-[dotnet]
-
-project/assembly_name="NetWars"
-
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
+
+[dotnet]
+
+project/assembly_name="NetWars"
 
 [gui]
 

@@ -49,7 +49,7 @@ func _ready() -> void:
 
 	for i in range(_TILE_COUNT):
 		var tile := Button.new()
-		tile.custom_minimum_size = Vector2(64, 64)
+		tile.custom_minimum_size = Vector2(88, 88)
 		tile.modulate = _COLOR_NORMAL
 		tile.pressed.connect(_on_tile_pressed.bind(i))
 		_grid.add_child(tile)
@@ -57,6 +57,7 @@ func _ready() -> void:
 
 	_confirm_button = Button.new()
 	_confirm_button.text = "Confirm"
+	_confirm_button.custom_minimum_size = Vector2(160, 50)
 	_confirm_button.disabled = true
 	_confirm_button.pressed.connect(_on_confirm_pressed)
 	var confirm_center := CenterContainer.new()

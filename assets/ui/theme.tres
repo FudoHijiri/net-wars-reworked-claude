@@ -184,35 +184,61 @@ content_margin_bottom = 6.0
 
 [resource]
 default_font = ExtResource("1_font")
-default_font_size = 16
-Button/constants/icon_max_width = 30
-Button/constants/h_separation = 8
+default_font_size = 20
+Button/constants/icon_max_width = 36
+Button/constants/h_separation = 10
 Button/colors/font_color = Color(0.9, 0.96, 1, 1)
 Button/colors/font_disabled_color = Color(0.42, 0.47, 0.56, 1)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(0.7, 1, 1, 1)
-Button/font_sizes/font_size = 16
+Button/font_sizes/font_size = 22
 Button/styles/disabled = SubResource("btn_disabled")
 Button/styles/focus = SubResource("btn_focus")
 Button/styles/hover = SubResource("btn_hover")
 Button/styles/normal = SubResource("btn_normal")
 Button/styles/pressed = SubResource("btn_pressed")
 Label/colors/font_color = Color(0.9, 0.96, 1, 1)
-Label/font_sizes/font_size = 16
+Label/font_sizes/font_size = 20
 Panel/styles/panel = SubResource("panel_normal")
 PanelContainer/styles/panel = SubResource("panel_normal")
 RichTextLabel/colors/default_color = Color(0.9, 0.96, 1, 1)
-RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 20
+
+; ---- Typography hierarchy -----------------------------------------------
+; MainTitle > ScreenTitle > SectionHeader > (default Button/Label) > SmallInfo
+MainTitle/base_type = &"Label"
+MainTitle/colors/font_color = Color(0.4, 1, 0.85, 1)
+MainTitle/font_sizes/font_size = 52
+
+ScreenTitle/base_type = &"Label"
+ScreenTitle/colors/font_color = Color(0.4, 1, 0.85, 1)
+ScreenTitle/font_sizes/font_size = 32
+
+SectionHeader/base_type = &"Label"
+SectionHeader/colors/font_color = Color(0.4, 1, 0.85, 1)
+SectionHeader/font_sizes/font_size = 24
+
+SmallInfo/base_type = &"Label"
+SmallInfo/colors/font_color = Color(0.55, 0.63, 0.75, 1)
+SmallInfo/font_sizes/font_size = 17
 
 TitleBar/base_type = &"Panel"
 TitleBar/styles/panel = SubResource("panel_titlebar")
 
+TitleBarLabel/base_type = &"Label"
+TitleBarLabel/colors/font_color = Color(0.4, 1, 0.85, 1)
+TitleBarLabel/font_sizes/font_size = 22
+
 HintBanner/base_type = &"Panel"
 HintBanner/styles/panel = SubResource("panel_hint")
 
+HintLabelText/base_type = &"Label"
+HintLabelText/font_sizes/font_size = 19
+
 DayLocked/base_type = &"Button"
+DayLocked/font_sizes/font_size = 24
 DayLocked/styles/normal = SubResource("day_locked")
 DayLocked/styles/hover = SubResource("day_locked")
 DayLocked/styles/pressed = SubResource("day_locked")
@@ -220,12 +246,17 @@ DayLocked/styles/disabled = SubResource("day_locked_disabled")
 DayLocked/colors/font_disabled_color = Color(0.38, 0.42, 0.5, 1)
 
 DayUnlocked/base_type = &"Button"
+DayUnlocked/font_sizes/font_size = 24
 DayUnlocked/styles/normal = SubResource("day_unlocked")
 DayUnlocked/styles/hover = SubResource("day_unlocked_hover")
 DayUnlocked/styles/pressed = SubResource("day_unlocked_hover")
 
 AppIcon/base_type = &"Button"
+AppIcon/font_sizes/font_size = 18
 AppIcon/styles/normal = SubResource("app_icon_normal")
 AppIcon/styles/hover = SubResource("app_icon_hover")
 AppIcon/styles/pressed = SubResource("app_icon_pressed")
 AppIcon/styles/focus = SubResource("app_icon_hover")
+
+UtilityButton/base_type = &"Button"
+UtilityButton/font_sizes/font_size = 18

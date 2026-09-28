@@ -14,7 +14,7 @@ func setup(new_day: int, label_text: String, locked: bool) -> void:
 	text = label_text
 	disabled = locked
 	theme_type_variation = &"DayLocked" if locked else &"DayUnlocked"
-	custom_minimum_size = Vector2(300, 56)
+	custom_minimum_size = Vector2(330, 68)
 	alignment = HORIZONTAL_ALIGNMENT_LEFT
 
 

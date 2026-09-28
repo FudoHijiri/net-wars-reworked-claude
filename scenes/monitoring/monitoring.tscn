@@ -20,6 +20,7 @@ offset_bottom = 44.0
 
 [node name="HintLabel" type="Label" parent="HintBanner"]
 unique_name_in_owner = true
+theme_type_variation = &"HintLabelText"
 anchor_right = 1.0
 anchor_bottom = 1.0
 horizontal_alignment = 1
@@ -29,62 +30,65 @@ text = "Hint"
 [node name="MainMargin" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 56
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 32
 
 [node name="MainRows" type="VBoxContainer" parent="MainMargin"]
-theme_override_constants/separation = 14
+theme_override_constants/separation = 18
 
 [node name="TitleLabel" type="Label" parent="MainMargin/MainRows"]
+theme_type_variation = &"ScreenTitle"
 horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
-theme_override_font_sizes/font_size = 22
 text = "SECURITY OPERATIONS MONITOR"
 
 [node name="TopBar" type="HBoxContainer" parent="MainMargin/MainRows"]
-theme_override_constants/separation = 40
+alignment = 1
+theme_override_constants/separation = 60
 
 [node name="TimeLabel" type="Label" parent="MainMargin/MainRows/TopBar"]
 unique_name_in_owner = true
-theme_override_font_sizes/font_size = 20
+theme_type_variation = &"SectionHeader"
 text = "Time Remaining: 0:45"
 
 [node name="SecurityPointsLabel" type="Label" parent="MainMargin/MainRows/TopBar"]
 unique_name_in_owner = true
-theme_override_font_sizes/font_size = 20
+theme_type_variation = &"SectionHeader"
 text = "Security Points: 0"
 
 [node name="ViewTabs" type="HBoxContainer" parent="MainMargin/MainRows"]
-theme_override_constants/separation = 12
+alignment = 1
+theme_override_constants/separation = 16
 
 [node name="ComputerViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 44)
+custom_minimum_size = Vector2(180, 50)
 text = "Computer View"
 
 [node name="LoginViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 44)
+custom_minimum_size = Vector2(180, 50)
 text = "Login View"
 
 [node name="NetworkViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 44)
+custom_minimum_size = Vector2(180, 50)
 text = "Network View"
 
 [node name="ServerViewButton" type="Button" parent="MainMargin/MainRows/ViewTabs"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 44)
+custom_minimum_size = Vector2(180, 50)
 text = "Server View"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MainMargin/MainRows"]
+size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_minimum_size = Vector2(0, 220)
+custom_minimum_size = Vector2(0, 280)
 
 [node name="EventList" type="VBoxContainer" parent="MainMargin/MainRows/ScrollContainer"]
 unique_name_in_owner = true
+size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
 [node name="DetailPanel" type="Panel" parent="."]
@@ -96,45 +100,46 @@ visible = false
 [node name="DetailMargin" type="MarginContainer" parent="DetailPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 60
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = 60
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
 
 [node name="DetailRows" type="VBoxContainer" parent="DetailPanel/DetailMargin"]
-theme_override_constants/separation = 12
+theme_override_constants/separation = 18
 
 [node name="DetailTitleLabel" type="Label" parent="DetailPanel/DetailMargin/DetailRows"]
 unique_name_in_owner = true
+theme_type_variation = &"ScreenTitle"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
 text = "EVENT DETAILS"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DetailPanel/DetailMargin/DetailRows"]
 size_flags_vertical = 3
-custom_minimum_size = Vector2(0, 140)
+custom_minimum_size = Vector2(0, 180)
 
 [node name="DetailFieldsList" type="VBoxContainer" parent="DetailPanel/DetailMargin/DetailRows/ScrollContainer"]
 unique_name_in_owner = true
-theme_override_constants/separation = 6
+theme_override_constants/separation = 8
 
 [node name="ReportFeedbackLabel" type="Label" parent="DetailPanel/DetailMargin/DetailRows"]
 unique_name_in_owner = true
+horizontal_alignment = 1
 autowrap_mode = 3
 text = ""
 
 [node name="ButtonRow" type="HBoxContainer" parent="DetailPanel/DetailMargin/DetailRows"]
 alignment = 1
-theme_override_constants/separation = 16
+theme_override_constants/separation = 24
 
 [node name="ReportButton" type="Button" parent="DetailPanel/DetailMargin/DetailRows/ButtonRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 44)
+custom_minimum_size = Vector2(220, 52)
 text = "Report Anomaly"
 
 [node name="CloseDetailButton" type="Button" parent="DetailPanel/DetailMargin/DetailRows/ButtonRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 44)
+custom_minimum_size = Vector2(160, 52)
 text = "Close"
 
 [node name="CompletePanel" type="Panel" parent="."]
@@ -152,8 +157,8 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
+theme_type_variation = &"ScreenTitle"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 28
 text = "MONITORING COMPLETE"
 
 [node name="SummaryLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
@@ -163,6 +168,6 @@ text = "Correct Reports: 0\nFalse Reports: 0\nSecurity Points: 0"
 
 [node name="ContinueButton" type="Button" parent="CompletePanel/CenterContainer/CompleteRows"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 44)
+custom_minimum_size = Vector2(220, 54)
 size_flags_horizontal = 4
 text = "Continue"

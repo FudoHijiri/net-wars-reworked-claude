@@ -52,7 +52,7 @@ func _ready() -> void:
 
 	for i in range(_PAD_COUNT):
 		var pad := Button.new()
-		pad.custom_minimum_size = Vector2(56, 56)
+		pad.custom_minimum_size = Vector2(76, 76)
 		pad.modulate = _dim(_PAD_COLORS[i])
 		pad.pressed.connect(_on_pad_pressed.bind(i))
 		pad_row.add_child(pad)

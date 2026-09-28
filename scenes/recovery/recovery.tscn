@@ -20,6 +20,7 @@ offset_bottom = 44.0
 
 [node name="HintLabel" type="Label" parent="HintBanner"]
 unique_name_in_owner = true
+theme_type_variation = &"HintLabelText"
 anchor_right = 1.0
 anchor_bottom = 1.0
 horizontal_alignment = 1
@@ -34,26 +35,29 @@ anchor_bottom = 1.0
 [node name="Margin" type="MarginContainer" parent="NetworkView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 32
 
 [node name="Rows" type="VBoxContainer" parent="NetworkView/Margin"]
-theme_override_constants/separation = 14
+theme_override_constants/separation = 20
 
 [node name="TitleLabel" type="Label" parent="NetworkView/Margin/Rows"]
+theme_type_variation = &"ScreenTitle"
 horizontal_alignment = 1
-theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
-theme_override_font_sizes/font_size = 26
 text = "NETWORK STATUS -- RECOVERY"
 
-[node name="ComponentList" type="VBoxContainer" parent="NetworkView/Margin/Rows"]
+[node name="ListCenter" type="CenterContainer" parent="NetworkView/Margin/Rows"]
+size_flags_vertical = 3
+
+[node name="ComponentList" type="VBoxContainer" parent="NetworkView/Margin/Rows/ListCenter"]
 unique_name_in_owner = true
-theme_override_constants/separation = 8
+theme_override_constants/separation = 12
 
 [node name="ProgressLabel" type="Label" parent="NetworkView/Margin/Rows"]
 unique_name_in_owner = true
+theme_type_variation = &"SectionHeader"
 horizontal_alignment = 1
 text = "Repaired: 0 / 0 damaged components"
 
@@ -66,18 +70,18 @@ visible = false
 [node name="Margin" type="MarginContainer" parent="MinigamePanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 60
+theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 60
+theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 60
 
 [node name="Rows" type="VBoxContainer" parent="MinigamePanel/Margin"]
-theme_override_constants/separation = 14
+theme_override_constants/separation = 18
 
 [node name="MinigameTitleLabel" type="Label" parent="MinigamePanel/Margin/Rows"]
 unique_name_in_owner = true
+theme_type_variation = &"ScreenTitle"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
 text = "REPAIRING: COMPONENT"
 
 [node name="InstructionLabel" type="Label" parent="MinigamePanel/Margin/Rows"]
@@ -107,13 +111,13 @@ theme_override_constants/separation = 16
 
 [node name="RetryButton" type="Button" parent="MinigamePanel/Margin/Rows/ButtonRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 44)
+custom_minimum_size = Vector2(160, 52)
 visible = false
 text = "Retry"
 
 [node name="CloseMinigameButton" type="Button" parent="MinigamePanel/Margin/Rows/ButtonRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 44)
+custom_minimum_size = Vector2(220, 52)
 text = "Back to Network"
 
 [node name="CompletePanel" type="Panel" parent="."]
@@ -131,19 +135,19 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
+theme_type_variation = &"MainTitle"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 28
 text = "SYSTEMS RESTORED"
 
 [node name="SummaryLabel" type="Label" parent="CompletePanel/CenterContainer/CompleteRows"]
 unique_name_in_owner = true
 horizontal_alignment = 1
 autowrap_mode = 3
-custom_minimum_size = Vector2(480, 0)
+custom_minimum_size = Vector2(560, 0)
 text = ""
 
 [node name="ContinueButton" type="Button" parent="CompletePanel/CenterContainer/CompleteRows"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 44)
+custom_minimum_size = Vector2(220, 54)
 size_flags_horizontal = 4
 text = "Continue"

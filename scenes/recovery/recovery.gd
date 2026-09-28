@@ -111,6 +111,7 @@ func _populate_component_list() -> void:
 		var button := Button.new()
 		button.text = "%s -- %s" % [component_name, state]
 		button.disabled = state != "DAMAGED"
+		button.custom_minimum_size = Vector2(360, 52)
 		if state == "DAMAGED":
 			button.pressed.connect(_on_component_selected.bind(component_name))
 		_component_list.add_child(button)
@@ -195,6 +196,7 @@ func _start_minigame_attempt() -> void:
 	for i in range(_OPTION_COUNT):
 		var button := Button.new()
 		button.text = "Option %d" % (i + 1)
+		button.custom_minimum_size = Vector2(150, 52)
 		button.pressed.connect(_on_option_selected.bind(i))
 		_options_row.add_child(button)
 
