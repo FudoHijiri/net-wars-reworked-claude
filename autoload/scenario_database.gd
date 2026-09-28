@@ -11,7 +11,7 @@ const SCENARIOS: Array[Dictionary] = [
 		"story": {
 			"day_introduction": [
 				{"speaker": "IT Director", "text": "We picked up something odd overnight -- a spike of failed logins on one of our accounts, then a login that finally went through. I need you to find out if that was really the account owner, or someone who shouldn't be in there.", "position": "right"},
-				{"speaker": "Analyst", "text": "Understood. A burst of failed logins followed by a success is a classic sign of Credential Abuse -- someone guessing or reusing stolen credentials until one works. I'll start by pulling the login records and the logs.", "position": "left"},
+				{"speaker": "Analyst", "text": "Understood. A burst of failed logins followed by a success is a classic pattern behind Credential Abuse -- it points to unauthorized use of this account's credentials, though not yet how that access was obtained. I'll start by pulling the login records and the logs.", "position": "left"},
 			],
 			"investigation_to_monitoring": [
 				{"speaker": "Analyst", "text": "The evidence lines up: a login from a location and device this account has never used before, right after over a dozen failed attempts at an hour the employee wasn't even scheduled to work. That's Credential Abuse -- this account has been compromised.", "position": "left"},
@@ -33,6 +33,11 @@ const SCENARIOS: Array[Dictionary] = [
 				{"speaker": "Analyst", "text": "Every affected system is back online. The account is secured, and the incident is fully resolved.", "position": "left"},
 				{"speaker": "IT Director", "text": "Good work. A second verification step should have caught this sooner -- let's make sure MFA stays on for every account, not just the ones that end up compromised.", "position": "right"},
 				{"speaker": "Analyst", "text": "Agreed. I'll stay alert -- this won't be the last unusual activity we see.", "position": "left"},
+			],
+			"failure_conclusion": [
+				{"speaker": "Analyst", "text": "System Integrity gave out before I could fully lock the account down. The incident wasn't contained in time.", "position": "left"},
+				{"speaker": "IT Director", "text": "Systems are stable again, but the attacker had more time inside than we wanted. We need a stronger defense in place before we engage this directly.", "position": "right"},
+				{"speaker": "Analyst", "text": "Understood. I'll go back through this incident and prepare a stronger response before we try again.", "position": "left"},
 			],
 		},
 		"tutorials": {
@@ -270,7 +275,7 @@ const SCENARIOS: Array[Dictionary] = [
 					{
 						"id": "credential_replay",
 						"label": "REPLAYING CREDENTIALS",
-						"description": "The attacker is reusing the stolen login details against other systems.",
+						"description": "The attacker is reusing this account's login details against other systems.",
 						"damage": 15,
 						"component": "Database",
 					},

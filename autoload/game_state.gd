@@ -111,11 +111,15 @@ func advance_phase() -> bool:
 	return true
 
 
-## Marks the current scenario as finished: flags it defeated, records it as completed,
-## and unlocks the next day. Does not reset per-scenario data — the Recovery/results
-## screen may still need to read it after this is called.
+## Marks the current scenario as finished after a successful Response: records it as
+## completed and unlocks the next day. Defensive by design -- a scenario whose Response
+## did not actually neutralize the threat (threat_defeated false) must never end up
+## recorded as completed no matter which scene/signal/button reaches this call, so this
+## checks the result itself rather than trusting the caller. Does not reset per-scenario
+## data — the Recovery/results screen may still need to read it after this is called.
 func complete_scenario() -> void:
-	threat_defeated = true
+	if not threat_defeated:
+		return
 	if not completed_scenarios.has(scenario_id):
 		completed_scenarios.append(scenario_id)
 	var next_day: int = current_day + 1

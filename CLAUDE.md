@@ -56,7 +56,6 @@ Day mapping:
 
 New Days unlock sequentially. Completed Days may be replayed freely.
 
-
 ---
 
 # 2. Core Scenario Flow
@@ -108,14 +107,77 @@ BETWEEN-OBJECTIVE STORY
         ↓
 RECOVERY
         ↓
-DAY CONCLUSION STORY
+DAY CONCLUSION
         ↓
-SCENARIO COMPLETE
-        ↓
-REVEAL COMPLETED DAY THREAT
-        ↓
-UNLOCK NEXT DAY
+CHECK RESPONSE RESULT
 ```
+
+The Response result determines whether the Day is successfully completed.
+
+### Successful Response
+
+```text
+RESPONSE
+    ↓
+THREAT NEUTRALIZED
+    ↓
+RECOVERY
+    ↓
+SUCCESS CONCLUSION
+    ↓
+SCENARIO COMPLETE
+    ↓
+MARK DAY COMPLETED
+    ↓
+REVEAL COMPLETED DAY THREAT
+    ↓
+UNLOCK NEXT DAY
+    ↓
+RETURN TO SCENARIO BOOK
+```
+
+### Failed Response
+
+A Response fails when:
+
+```text
+GameState.system_integrity <= 0
+```
+
+A failed Response must still proceed to Recovery so the player can experience and repair the consequences of the incident.
+
+```text
+RESPONSE
+    ↓
+SYSTEM COMPROMISED
+    ↓
+RECOVERY
+    ↓
+FAILURE CONCLUSION
+    ↓
+DO NOT MARK DAY COMPLETED
+    ↓
+DO NOT UNLOCK NEXT DAY
+    ↓
+RETURN TO SCENARIO BOOK
+```
+
+A failed Response must never cause the current Day to be marked as completed.
+
+`GameState.complete_scenario()` must only be called after a successful Response.
+
+Completed Days remain replayable, but only successfully completed Days can unlock the next Day.
+
+The failure state must remain available through Recovery and Day Conclusion.
+
+Use the existing Response result state:
+
+```gdscript
+GameState.threat_defeated
+GameState.response_result
+```
+
+Do not create a separate success/failure progression system unless a future architectural change explicitly requires one.
 
 Story is used to provide narrative direction, context, and educational reinforcement between objectives.
 
@@ -175,7 +237,6 @@ Later Days should skip completed tutorials by default while allowing tutorials t
 
 A `ScenarioManager` should control overall Day progression and scenario data.
 
-
 ---
 
 # 3. Suggested Godot Structure
@@ -233,6 +294,7 @@ var system_integrity: int
 var max_system_integrity: int
 var damaged_components: Array
 var threat_defeated: bool = false
+var response_result: String = ""
 
 var repaired_components: Array
 
@@ -241,10 +303,25 @@ var unlocked_days: Array
 var completed_days: Array
 ```
 
+`response_result` records the outcome of the Response phase.
+
+Successful Response:
+```text
+response_result = "threat_neutralized"
+threat_defeated = true
+```
+
+Failed Response:
+```text
+response_result = "system_compromised"
+threat_defeated = false
+```
+
+Scenario completion must depend on this Response result. A failed Response must not be treated as a completed scenario or unlock the next Day.
+
 Tutorial completion state persists between Days so that completed tutorials do not need to be repeated on later Days by default.
 
 Keep scenario-specific information data-driven rather than hard-coded into individual scenes.
-
 
 ---
 
@@ -259,12 +336,13 @@ Scenario
 ├── ID
 ├── Threat Name
 ├── Day
-├── Introduction Story
+├── Day Introduction Story
 ├── Investigation-to-Monitoring Story
 ├── Monitoring-to-Hardening Story
 ├── Hardening-to-Response Story
 ├── Response-to-Recovery Story
-├── Conclusion Story
+├── Day Conclusion Story
+├── Failure Conclusion Story
 ├── Tutorial Data
 ├── Investigation Data
 ├── Monitoring Data
@@ -282,12 +360,13 @@ Example concept:
     "threat_name": "Credential Abuse",
 
     "story": {
-        "introduction": [...],
+        "day_introduction": [...],
         "investigation_to_monitoring": [...],
         "monitoring_to_hardening": [...],
         "hardening_to_response": [...],
         "response_to_recovery": [...],
-        "conclusion": [...]
+        "day_conclusion": [...],
+        "failure_conclusion": [...]
     },
 
     "tutorials": {
@@ -311,7 +390,6 @@ Godot `Resource` files may be used instead of dictionaries if preferred.
 The architecture must make it possible to add a new threat without rewriting the core gameplay systems.
 
 Scenario-specific story, evidence, anomalies, shop contents, boss behavior, and recovery conditions must come from scenario data rather than being hard-coded into generic gameplay scenes.
-
 
 ---
 
@@ -569,7 +647,11 @@ Events may be:
 - Suspicious
 - Clearly malicious
 
-Events should be randomized within scenario-defined parameters.
+Events are defined by the scenario.
+
+The default implementation may present them in a scripted order for consistent educational delivery.
+
+Randomization may be introduced later when a scenario explicitly supports it.
 
 Example:
 
@@ -1000,16 +1082,22 @@ As the player takes damage, individual components can receive damage states.
 
 The "network body" concept can be used as a **visual metaphor**, not as a literal technical network diagram.
 
+The Response battle is also a gameplay abstraction rather than a literal representation of how a real security operations team measures incidents.
+
+- **Threat HP** represents progress toward neutralizing the incident.
+- **System Integrity** represents the organization's remaining operational resilience during the incident.
+- **Containment** is the game's existing combat-facing term for progress against the threat; in the current implementation it corresponds to damage dealt to the boss.
+
+These values are gameplay mechanics used to teach incident-response concepts. They are not literal real-world security measurements.
+
 ---
 
 ## 8.6 Success Conditions
 
-Response succeeds when:
+Response succeeds when the threat's HP reaches 0.
 
 ```text
 threat_hp <= 0
-AND
-required_containment_condition == true
 ```
 
 Response fails when:
@@ -1018,7 +1106,7 @@ Response fails when:
 system_integrity <= 0
 ```
 
-Optional additional victory conditions may be defined per boss.
+The current Response implementation uses threat HP and System Integrity as its core win/loss conditions. Additional threat-specific victory conditions may be introduced later, but they must be explicitly defined in scenario data before being required by the core flow.
 
 ---
 
@@ -1030,6 +1118,14 @@ At the end of Response:
 GameState.system_integrity
 GameState.damaged_components
 GameState.threat_defeated
+GameState.response_result
+```
+
+`response_result` must identify the outcome that Recovery and Day Conclusion use to determine whether the Day can be completed:
+
+```text
+"threat_neutralized"
+"system_compromised"
 ```
 
 The amount and location of damage determine Recovery.
@@ -1170,6 +1266,8 @@ DAY 1 — ???
 
 After the player selects Day 1 from the Scenario Book, the Day's Visual Novel introduction begins. The threat name remains hidden from the Day Book until the scenario is completed, but the story can naturally establish the incident without directly naming the final threat.
 
+The Day 1 narrative should treat the available evidence as evidence of **likely unauthorized credential use**, not as proof of a specific credential-theft method. Do not state that credentials were stolen, guessed, reused, or otherwise obtained unless the scenario evidence actually establishes that method.
+
 Example opening story:
 
 An employee account has shown unusual activity. The security analyst is assigned to determine whether the activity is legitimate or evidence of a compromise.
@@ -1216,6 +1314,8 @@ Web Application Attack
 ```
 
 Evidence progressively rules out unrelated options.
+
+The collected evidence strongly supports **Credential Abuse / unauthorized use of the account**, but the evidence does not by itself establish exactly how the credentials were obtained.
 
 Player confirms:
 
@@ -1384,7 +1484,9 @@ The player enters Recovery.
 
 They repair each component using short minigames.
 
-After all required repairs:
+After all required repairs, the game checks the Response result.
+
+Successful Response:
 
 ```text
 SYSTEM RESTORED
@@ -1393,7 +1495,18 @@ DAY 1 — CREDENTIAL ABUSE
 COMPLETE
 ```
 
-Then proceed to the next scenario/day.
+The scenario is marked completed and the next Day is unlocked.
+
+Failed Response:
+
+```text
+SYSTEM RESTORED
+
+DAY 1 — CREDENTIAL ABUSE
+INCIDENT NOT CONTAINED
+```
+
+The scenario is not marked completed and the next Day remains locked. The player returns to the Scenario Book and may replay the Day.
 
 ---
 
@@ -1532,6 +1645,12 @@ The same Investigation, Monitoring, Hardening, Response, and Recovery systems sh
 
 # 15. Development Priority
 
+The sequence below is the original prototype development plan. It is a development reference, not an instruction to rebuild already-implemented systems from scratch.
+
+The current repository already contains implementations for the Global/Day flow and all five gameplay phases. Day 1 contains substantial scenario content; Days 2–8 currently exist as scenario entries/scaffolding and still need their full threat-specific content.
+
+When continuing development, prioritize remaining work and bug fixes in the current implementation rather than restarting completed prototypes.
+
 Implement in this order:
 
 ### Prototype 1
@@ -1572,9 +1691,12 @@ Implement Investigation:
 Implement Monitoring:
 
 - Four views
-- Random events
+- Scenario-defined events
+- Scripted event order for consistent educational delivery
 - Report button
 - Security Points
+
+Randomized event order is optional future work and should only be added when a scenario explicitly supports it.
 
 ### Prototype 4
 
@@ -1607,6 +1729,8 @@ Implement Recovery:
 ### Prototype 7
 
 Connect scenario data and create the eight threat scenarios.
+
+**Current status:** Day 1 has substantial scenario content implemented. Days 2–8 currently have scenario entries/scaffolding but do not yet have the same level of threat-specific story, Investigation, Monitoring, Hardening, Response, and Recovery content as Day 1.
 
 ---
 
@@ -1645,11 +1769,28 @@ The game should remain fully 2D and should prioritize simple, readable interface
 
 # 17. Reference Project & Reuse Strategy
 
-A full audit of this project and of the previous prototype at `D:\GitHub\the-spire` was performed on 2026-09-13. The detailed findings, file-by-file breakdown, and reuse recommendations live in [`PROJECT_REFERENCE.md`](PROJECT_REFERENCE.md) — read it before starting Response-phase work, and before assuming any system needs to be built from scratch.
+A full audit of this project and of the previous prototype at `D:\GitHub\the-spire` was performed on 2026-09-13. The detailed findings, file-by-file breakdown, and reuse recommendations live in [`PROJECT_REFERENCE.md`](PROJECT_REFERENCE.md) — read it before starting or changing Response-phase work, and before assuming any system needs to be built from scratch.
 
-Summary of the decision:
+`PROJECT_REFERENCE.md` is a historical audit and should be read with the current repository state in mind. It records the state of the project at the time of the 2026-09-13 audit; it is not a claim that the current repository is still empty.
 
-- This project currently has **no code** — everything below Prototype 1 in §14 starts from zero.
+## Current Repository Status
+
+The current repository is no longer an empty prototype. It contains implementations for:
+
+- Global/Day flow and scenario progression
+- Investigation
+- Monitoring
+- Hardening
+- Response
+- Recovery
+- Shared `GameState`, `ScenarioFlow`, and `ScenarioDatabase` systems
+
+Day 1 contains the current substantial scenario content. Days 2–8 currently have scenario entries/scaffolding but do not yet have the same level of threat-specific content as Day 1.
+
+The current implementation should be extended and corrected in place. Do not restart completed systems or treat the historical Prototype 1–6 plan as unfinished work.
+
+## Reference Project Reuse Rules
+
 - `the-spire` has a working, already cybersecurity-themed card-combat prototype (Investigation/Monitoring/Hardening/Response/Recovery card types, Integrity/Containment/Breach meters). Its `DeckManager.gd`, `CardNode.gd`, `Tutorial.gd`, and CSV card/threat content are directly reusable. Its combat scene (`PlayUI.gd`) and card-effect system need to be adapted, not copied verbatim — see `PROJECT_REFERENCE.md` §2.2–§4 for specifics and why.
-- `the-spire` has no active boss/intent system and no status-effect system; both must be newly designed for this project's Response phase.
+- `the-spire` has no active boss/intent system and no status-effect system; both are newly designed systems in this project.
 - `the-spire` is a reference only. Never edit files under `D:\GitHub\the-spire` as part of this project's work.

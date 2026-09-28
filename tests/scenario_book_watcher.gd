@@ -36,7 +36,9 @@ func _ready() -> void:
 	_check("GameState.start_scenario set scenario_id", GameState.scenario_id == "credential_abuse")
 	_check("GameState.start_scenario set current_day", GameState.current_day == 1)
 
-	# Simulate the (not-yet-built) Response phase finishing the scenario.
+	# Simulate a successful Response finishing the scenario -- GameState.complete_scenario()
+	# is defensive and only records completion when threat_defeated is true.
+	GameState.threat_defeated = true
 	GameState.complete_scenario()
 	_check("Day 1 marked completed in GameState", GameState.is_scenario_completed("credential_abuse"))
 	_check("Day 2 unlocked in GameState", GameState.is_day_unlocked(2))

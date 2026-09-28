@@ -22,6 +22,9 @@ func _ready() -> void:
 	_check("advance to RECOVERY", GameState.advance_phase() and GameState.current_phase == GameState.Phase.RECOVERY)
 	GameState.repaired_components.append("Server")
 
+	# GameState.complete_scenario() is defensive and only records completion when
+	# threat_defeated is true -- simulate the successful Response that would set it.
+	GameState.threat_defeated = true
 	GameState.complete_scenario()
 	_check("scenario marked completed", GameState.is_scenario_completed("credential_abuse"))
 	_check("next day unlocked", GameState.is_day_unlocked(2))

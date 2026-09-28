@@ -115,15 +115,34 @@ func on_tutorial_finished() -> void:
 	get_tree().change_scene_to_file(_PHASE_SCENES[entry["phase_name"]])
 
 
-## Returns the Day conclusion sequence for the active scenario.
+## Generic, non-threat-specific fallback used when a scenario hasn't defined its own
+## "failure_conclusion" yet -- still clearly communicates that the incident was not
+## contained and that the Day can be attempted again, rather than silently reusing the
+## success story or crashing on a missing key.
+const _GENERIC_FAILURE_CONCLUSION: Array = [
+	{"speaker": "Analyst", "text": "System Integrity gave out before the threat could be fully contained. The incident wasn't neutralized this time.", "position": "left"},
+	{"speaker": "IT Director", "text": "We'll need to come at this differently. Regroup and try again.", "position": "right"},
+]
+
+
+## Returns the Day conclusion sequence for the active scenario, based on whether the
+## Response that just finished actually neutralized the threat
+## (GameState.threat_defeated). A failed Response still reaches this point -- it gets a
+## different conclusion, not a skipped one.
 func get_day_conclusion_sequence() -> Dictionary:
-	return _build_sequence(_get_story_lines("day_conclusion"))
+	if GameState.threat_defeated:
+		return _build_sequence(_get_story_lines("day_conclusion"))
+	return _build_sequence(_get_story_lines("failure_conclusion", _GENERIC_FAILURE_CONCLUSION))
 
 
-## Called when the Day conclusion dialogue finishes. Marks the scenario completed
-## (unlocking the next Day) and returns to the Scenario Book.
+## Called when the Day conclusion dialogue finishes. Only a successful Response
+## (GameState.threat_defeated) marks the scenario completed and unlocks the next Day --
+## GameState.complete_scenario() is itself defensive about this too, so this check is
+## belt-and-suspenders, not the only thing preventing a failed Day from completing.
+## Either way, control returns to the Scenario Book so the player can retry.
 func on_scenario_conclusion_finished() -> void:
-	GameState.complete_scenario()
+	if GameState.threat_defeated:
+		GameState.complete_scenario()
 	get_tree().change_scene_to_file(SCENARIO_BOOK_SCENE)
 
 
@@ -145,10 +164,10 @@ func _current_phase_index() -> int:
 	return 0
 
 
-func _get_story_lines(story_key: String) -> Array:
+func _get_story_lines(story_key: String, fallback: Array = [{"speaker": "Analyst", "text": "...", "position": "left"}]) -> Array:
 	var scenario: Dictionary = ScenarioDatabase.get_scenario_by_id(GameState.scenario_id)
 	var story: Dictionary = scenario.get("story", {})
-	return story.get(story_key, [{"speaker": "Analyst", "text": "...", "position": "left"}])
+	return story.get(story_key, fallback)
 
 
 func _get_tutorial_lines(phase_name: String) -> Array:
