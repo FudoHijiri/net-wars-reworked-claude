@@ -26,7 +26,7 @@ const SCENARIOS: Array[Dictionary] = [
 				{"speaker": "Analyst", "text": "Time to actively respond. I'll use what I've prepared to shut this account down before it causes any more damage.", "position": "left"},
 			],
 			"response_to_recovery": [
-				{"speaker": "Analyst", "text": "The compromised account is locked down and the attacker's access is cut off. But containing an attack doesn't undo the damage it already caused.", "position": "left"},
+				{"speaker": "Analyst", "text": "The incident remains serious either way. Whatever happened during Response, I need to assess the damage and restore the affected systems now.", "position": "left"},
 				{"speaker": "Analyst", "text": "Some systems took damage while the attacker had access. I need to go through and repair what was affected before we can call this incident closed.", "position": "left"},
 			],
 			"day_conclusion": [

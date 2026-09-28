@@ -5,7 +5,7 @@ extends Control
 
 const DAY_ENTRY_SCENE := preload("res://ui/day_entry/day_entry.tscn")
 
-@onready var _day_list: VBoxContainer = %DayList
+@onready var _day_list: GridContainer = %DayList
 @onready var _back_button: Button = %BackButton
 
 

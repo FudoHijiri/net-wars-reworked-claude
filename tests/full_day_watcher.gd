@@ -52,7 +52,7 @@ func _ready() -> void:
 	# ================= Scenario Book -> Day 1 =================
 	var book := get_tree().current_scene
 	_check("Play opens the Scenario Book", book != null and book.scene_file_path == SCENARIO_BOOK)
-	var day_list: VBoxContainer = book.get_node("%DayList")
+	var day_list: GridContainer = book.get_node("%DayList")
 	_check("Day 1 starts unrevealed", day_list.get_child(0).text == "Day 1 - ???")
 	_check("Day 2 starts locked", day_list.get_child(1).disabled)
 

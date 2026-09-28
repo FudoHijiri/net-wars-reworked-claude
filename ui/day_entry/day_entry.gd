@@ -1,6 +1,8 @@
 extends Button
-## One selectable row in the Scenario Book: "Day X - <status>". Locked days are
-## disabled and dimmed; unlocked days emit day_selected when clicked.
+## One selectable row in the Scenario Book: "Day X - <status>". Locked days use the
+## "DayLocked" theme variation (dim, flat) and unlocked days use "DayUnlocked" (bright,
+## cyan-bordered case-file look) -- see assets/ui/theme.tres. Locked days are disabled;
+## unlocked days emit day_selected when clicked.
 
 signal day_selected(day: int)
 
@@ -11,7 +13,9 @@ func setup(new_day: int, label_text: String, locked: bool) -> void:
 	day = new_day
 	text = label_text
 	disabled = locked
-	modulate = Color(0.5, 0.5, 0.5, 1.0) if locked else Color(1, 1, 1, 1)
+	theme_type_variation = &"DayLocked" if locked else &"DayUnlocked"
+	custom_minimum_size = Vector2(300, 56)
+	alignment = HORIZONTAL_ALIGNMENT_LEFT
 
 
 func _ready() -> void:

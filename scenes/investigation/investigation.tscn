@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scenes/investigation/investigation.gd" id="1_inv"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/email.svg" id="2_email"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/logs.svg" id="3_logs"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/computers.svg" id="4_computers"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/login_activity.svg" id="5_login"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/files.svg" id="6_files"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/network.svg" id="7_network"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/servers.svg" id="8_servers"]
+[ext_resource type="Texture2D" path="res://assets/icons/apps/reports.svg" id="9_reports"]
 
 [node name="Investigation" type="Control"]
 anchor_right = 1.0
@@ -14,8 +22,9 @@ color = Color(0.043, 0.055, 0.086, 1)
 
 [node name="HintBanner" type="Panel" parent="."]
 unique_name_in_owner = true
+theme_type_variation = &"HintBanner"
 anchor_right = 1.0
-offset_bottom = 48.0
+offset_bottom = 44.0
 
 [node name="HintLabel" type="Label" parent="HintBanner"]
 unique_name_in_owner = true
@@ -34,7 +43,7 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 60
+theme_override_constants/margin_top = 56
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
@@ -43,55 +52,96 @@ theme_override_constants/separation = 16
 
 [node name="TitleLabel" type="Label" parent="DesktopView/Margin/Rows"]
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
-text = "SECURITY DESKTOP"
+theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 22
+text = "SECURITY WORKSTATION -- INCIDENT DESKTOP"
 
 [node name="GridCenter" type="CenterContainer" parent="DesktopView/Margin/Rows"]
 size_flags_vertical = 3
 
 [node name="AppGrid" type="GridContainer" parent="DesktopView/Margin/Rows/GridCenter"]
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 16
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
 columns = 4
 
 [node name="EmailButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("2_email")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Email"
 
 [node name="LogsButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("3_logs")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Logs"
 
 [node name="ComputersButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("4_computers")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Computers"
 
 [node name="LoginActivityButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("5_login")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Login Activity"
 
 [node name="FilesButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("6_files")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Files"
 
 [node name="NetworkButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("7_network")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Network"
 
 [node name="ServersButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("8_servers")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Servers"
 
 [node name="ReportsButton" type="Button" parent="DesktopView/Margin/Rows/GridCenter/AppGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(140, 76)
+theme_type_variation = &"AppIcon"
+icon = ExtResource("9_reports")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = false
 text = "Reports"
 
 [node name="BottomBar" type="HBoxContainer" parent="DesktopView/Margin/Rows"]
@@ -117,34 +167,66 @@ visible = false
 [node name="Margin" type="MarginContainer" parent="AppView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
 
 [node name="Rows" type="VBoxContainer" parent="AppView/Margin"]
-theme_override_constants/separation = 12
+theme_override_constants/separation = 0
 
-[node name="AppTitleLabel" type="Label" parent="AppView/Margin/Rows"]
+[node name="TitleBar" type="Panel" parent="AppView/Margin/Rows"]
+theme_type_variation = &"TitleBar"
+custom_minimum_size = Vector2(0, 40)
+
+[node name="TitleBarRow" type="HBoxContainer" parent="AppView/Margin/Rows/TitleBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -6.0
+
+[node name="AppTitleLabel" type="Label" parent="AppView/Margin/Rows/TitleBar/TitleBarRow"]
 unique_name_in_owner = true
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
+size_flags_horizontal = 3
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 18
 text = "Application"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="AppView/Margin/Rows"]
+[node name="CloseAppButton" type="Button" parent="AppView/Margin/Rows/TitleBar/TitleBarRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 28)
+size_flags_vertical = 4
+text = "X"
+
+[node name="ContentPanel" type="Panel" parent="AppView/Margin/Rows"]
+size_flags_vertical = 3
+
+[node name="ContentMargin" type="MarginContainer" parent="AppView/Margin/Rows/ContentPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="ContentRows" type="VBoxContainer" parent="AppView/Margin/Rows/ContentPanel/ContentMargin"]
+theme_override_constants/separation = 12
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows"]
 size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 180)
 
-[node name="EntryList" type="VBoxContainer" parent="AppView/Margin/Rows/ScrollContainer"]
+[node name="EntryList" type="VBoxContainer" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/ScrollContainer"]
 unique_name_in_owner = true
 theme_override_constants/separation = 8
 
-[node name="DetailPanel" type="Panel" parent="AppView/Margin/Rows"]
+[node name="DetailPanel" type="Panel" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 140)
 
-[node name="DetailMargin" type="MarginContainer" parent="AppView/Margin/Rows/DetailPanel"]
+[node name="DetailMargin" type="MarginContainer" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/DetailPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/margin_left = 12
@@ -152,28 +234,23 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="DetailRows" type="VBoxContainer" parent="AppView/Margin/Rows/DetailPanel/DetailMargin"]
+[node name="DetailRows" type="VBoxContainer" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/DetailPanel/DetailMargin"]
 theme_override_constants/separation = 8
 
-[node name="DetailLabel" type="Label" parent="AppView/Margin/Rows/DetailPanel/DetailMargin/DetailRows"]
+[node name="DetailLabel" type="Label" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/DetailPanel/DetailMargin/DetailRows"]
 unique_name_in_owner = true
 autowrap_mode = 3
 text = "Detail text goes here."
 
-[node name="MarkFeedbackLabel" type="Label" parent="AppView/Margin/Rows/DetailPanel/DetailMargin/DetailRows"]
+[node name="MarkFeedbackLabel" type="Label" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/DetailPanel/DetailMargin/DetailRows"]
 unique_name_in_owner = true
 autowrap_mode = 3
 text = ""
 
-[node name="MarkEvidenceButton" type="Button" parent="AppView/Margin/Rows/DetailPanel/DetailMargin/DetailRows"]
+[node name="MarkEvidenceButton" type="Button" parent="AppView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/DetailPanel/DetailMargin/DetailRows"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 40)
 text = "Mark as Evidence"
-
-[node name="CloseAppButton" type="Button" parent="AppView/Margin/Rows"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 40)
-text = "Close"
 
 [node name="EvidenceView" type="Control" parent="."]
 unique_name_in_owner = true
@@ -184,30 +261,53 @@ visible = false
 [node name="Margin" type="MarginContainer" parent="EvidenceView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
 
 [node name="Rows" type="VBoxContainer" parent="EvidenceView/Margin"]
+theme_override_constants/separation = 0
+
+[node name="TitleBar" type="Panel" parent="EvidenceView/Margin/Rows"]
+theme_type_variation = &"TitleBar"
+custom_minimum_size = Vector2(0, 40)
+
+[node name="TitleLabel" type="Label" parent="EvidenceView/Margin/Rows/TitleBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "INVESTIGATION EVIDENCE"
+
+[node name="ContentPanel" type="Panel" parent="EvidenceView/Margin/Rows"]
+size_flags_vertical = 3
+
+[node name="ContentMargin" type="MarginContainer" parent="EvidenceView/Margin/Rows/ContentPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="ContentRows" type="VBoxContainer" parent="EvidenceView/Margin/Rows/ContentPanel/ContentMargin"]
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="EvidenceView/Margin/Rows"]
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
-text = "EVIDENCE LOG"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="EvidenceView/Margin/Rows"]
+[node name="ScrollContainer" type="ScrollContainer" parent="EvidenceView/Margin/Rows/ContentPanel/ContentMargin/ContentRows"]
 size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 220)
 
-[node name="EvidenceList" type="VBoxContainer" parent="EvidenceView/Margin/Rows/ScrollContainer"]
+[node name="EvidenceList" type="VBoxContainer" parent="EvidenceView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/ScrollContainer"]
 unique_name_in_owner = true
 theme_override_constants/separation = 8
 
-[node name="CloseEvidenceButton" type="Button" parent="EvidenceView/Margin/Rows"]
+[node name="CloseEvidenceButton" type="Button" parent="EvidenceView/Margin/Rows/ContentPanel/ContentMargin/ContentRows"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 40)
+size_flags_horizontal = 4
 text = "Close"
 
 [node name="ThreatView" type="Control" parent="."]
@@ -219,42 +319,64 @@ visible = false
 [node name="Margin" type="MarginContainer" parent="ThreatView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
 
 [node name="Rows" type="VBoxContainer" parent="ThreatView/Margin"]
-theme_override_constants/separation = 12
+theme_override_constants/separation = 0
 
-[node name="TitleLabel" type="Label" parent="ThreatView/Margin/Rows"]
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
+[node name="TitleBar" type="Panel" parent="ThreatView/Margin/Rows"]
+theme_type_variation = &"TitleBar"
+custom_minimum_size = Vector2(0, 40)
+
+[node name="TitleLabel" type="Label" parent="ThreatView/Margin/Rows/TitleBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 18
 text = "CONFIRM SUSPECTED THREAT"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ThreatView/Margin/Rows"]
+[node name="ContentPanel" type="Panel" parent="ThreatView/Margin/Rows"]
+size_flags_vertical = 3
+
+[node name="ContentMargin" type="MarginContainer" parent="ThreatView/Margin/Rows/ContentPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="ContentRows" type="VBoxContainer" parent="ThreatView/Margin/Rows/ContentPanel/ContentMargin"]
+theme_override_constants/separation = 12
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ThreatView/Margin/Rows/ContentPanel/ContentMargin/ContentRows"]
 size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 180)
 
-[node name="ThreatList" type="VBoxContainer" parent="ThreatView/Margin/Rows/ScrollContainer"]
+[node name="ThreatList" type="VBoxContainer" parent="ThreatView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/ScrollContainer"]
 unique_name_in_owner = true
 theme_override_constants/separation = 6
 
-[node name="FeedbackLabel" type="Label" parent="ThreatView/Margin/Rows"]
+[node name="FeedbackLabel" type="Label" parent="ThreatView/Margin/Rows/ContentPanel/ContentMargin/ContentRows"]
 unique_name_in_owner = true
 autowrap_mode = 3
 text = ""
 
-[node name="ButtonRow" type="HBoxContainer" parent="ThreatView/Margin/Rows"]
+[node name="ButtonRow" type="HBoxContainer" parent="ThreatView/Margin/Rows/ContentPanel/ContentMargin/ContentRows"]
 alignment = 1
 theme_override_constants/separation = 16
 
-[node name="ConfirmButton" type="Button" parent="ThreatView/Margin/Rows/ButtonRow"]
+[node name="ConfirmButton" type="Button" parent="ThreatView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/ButtonRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 44)
 text = "Confirm"
 
-[node name="CloseThreatButton" type="Button" parent="ThreatView/Margin/Rows/ButtonRow"]
+[node name="CloseThreatButton" type="Button" parent="ThreatView/Margin/Rows/ContentPanel/ContentMargin/ContentRows/ButtonRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 44)
 text = "Close"

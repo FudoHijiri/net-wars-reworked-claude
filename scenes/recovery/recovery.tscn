@@ -14,8 +14,9 @@ color = Color(0.043, 0.055, 0.086, 1)
 
 [node name="HintBanner" type="Panel" parent="."]
 unique_name_in_owner = true
+theme_type_variation = &"HintBanner"
 anchor_right = 1.0
-offset_bottom = 48.0
+offset_bottom = 44.0
 
 [node name="HintLabel" type="Label" parent="HintBanner"]
 unique_name_in_owner = true
@@ -43,8 +44,9 @@ theme_override_constants/separation = 14
 
 [node name="TitleLabel" type="Label" parent="NetworkView/Margin/Rows"]
 horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
 theme_override_font_sizes/font_size = 26
-text = "NETWORK STATUS"
+text = "NETWORK STATUS -- RECOVERY"
 
 [node name="ComponentList" type="VBoxContainer" parent="NetworkView/Margin/Rows"]
 unique_name_in_owner = true

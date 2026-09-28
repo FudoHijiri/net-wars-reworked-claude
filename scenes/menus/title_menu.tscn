@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scenes/menus/title_menu.gd" id="1_tm"]
+[ext_resource type="Texture2D" path="res://assets/ui/monitor/tv_monitor.png" id="2_tv"]
+[ext_resource type="Shader" path="res://assets/ui/shaders/crt_scanlines.gdshader" id="3_crt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
+shader = ExtResource("3_crt")
 
 [node name="TitleMenu" type="Control"]
 anchor_right = 1.0
@@ -10,41 +15,81 @@ script = ExtResource("1_tm")
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.043, 0.055, 0.086, 1)
+color = Color(0.02, 0.023, 0.032, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MonitorFrame" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 44.0
+offset_right = -140.0
+offset_bottom = -44.0
+
+[node name="TVImage" type="TextureRect" parent="MonitorFrame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_tv")
+
+[node name="ScreenContent" type="Control" parent="MonitorFrame"]
+anchor_left = 0.12
+anchor_top = 0.04
+anchor_right = 0.887
+anchor_bottom = 0.953
+
+[node name="CenterContainer" type="CenterContainer" parent="MonitorFrame/ScreenContent"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-theme_override_constants/separation = 12
+[node name="VBoxContainer" type="VBoxContainer" parent="MonitorFrame/ScreenContent/CenterContainer"]
+theme_override_constants/separation = 18
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.4, 1, 0.85, 1)
+theme_override_font_sizes/font_size = 48
 text = "NET WARS"
 
-[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 0)
-size_flags_horizontal = 4
-text = "Play"
+[node name="SubtitleLabel" type="Label" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.5, 0.63, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "SECURITY ANALYST TERMINAL"
 
-[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 0)
-size_flags_horizontal = 4
-text = "Settings"
+[node name="ButtonSpacer" type="Control" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
 
-[node name="CreditsButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(240, 0)
 size_flags_horizontal = 4
-text = "Credits"
+theme_override_font_sizes/font_size = 18
+text = "> PLAY"
 
-[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(240, 0)
 size_flags_horizontal = 4
-text = "Exit"
+theme_override_font_sizes/font_size = 18
+text = "> SETTINGS"
+
+[node name="CreditsButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "> CREDITS"
+
+[node name="ExitButton" type="Button" parent="MonitorFrame/ScreenContent/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "> EXIT"
+
+[node name="ScanlineOverlay" type="ColorRect" parent="MonitorFrame/ScreenContent"]
+mouse_filter = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+material = SubResource("ShaderMaterial_crt")
+color = Color(1, 1, 1, 1)
